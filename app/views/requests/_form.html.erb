@@ -1,0 +1,48 @@
+<%= form_with(model: request, local: true) do |form| %>
+<% if request.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+  <ul>
+    <% request.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<form>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <div class="form-check">
+    <%= form.radio_button :category, 'one time help', :checked => true %>
+    <%= form.label :category_oneTime, 'one time help' %>
+  </div>
+  <div class="form-check">
+    <%= form.radio_button :category, 'material need', :checked => true %>
+    <%= form.label :category_material, 'material need' %>
+  </div>
+  <div class="form-group">
+    <p>Please enter here the location of your request:</p>
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :status %>
+    <%= form.select :status, ["Unfulfilled", "Fulfilled"] %>
+  </div>
+
+  <%= form.submit %>
+
+</form>
+<% end %>

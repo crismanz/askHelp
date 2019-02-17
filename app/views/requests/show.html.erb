@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @request.title %></h2>
+
+<p><b>Description: </b><%= @request.description %></p>
+<p><b>Type of request: </b><%= @request.category %></p>
+<p><b>Status: </b><%= @request.status %></p>
+<p><b>Longitude: </b><%= @request.longitude %></p>
+<p><b>Latitude: </b><%= @request.latitude %></p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

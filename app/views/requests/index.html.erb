@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<style media="screen">
+  . table {
+    padding: 10px;
+  }
+</style>
+
+<h1>Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Type</th>
+      <th></th>
+      <th>Location</th>
+      <th></th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requests.each do |request| %>
+    <tr>
+      <td><h3><%= request.title %></h3></td>
+      <td><%= request.category %></td>
+      <td><%= request.status %></td>
+      <td><%= request.longitude %></td>
+      <td><%= request.latitude %></td>
+      <td><%= request.description %></td>
+
+      <td><%= link_to 'Show', request %></td>
+      <% if request.user == current_user %>
+      <td><%= link_to 'Edit', edit_request_path(request) %></td>
+      <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Request', new_request_path %>
