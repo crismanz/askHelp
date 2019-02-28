@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
   # GET /requests
@@ -11,6 +11,9 @@ class RequestsController < ApplicationController
   # GET /requests/1
   # GET /requests/1.json
   def show
+    @requests = Request.all
+    @users = User.all
+    @conversations = Conversation.all
   end
 
   # GET /requests/new
