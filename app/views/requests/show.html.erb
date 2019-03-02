@@ -8,16 +8,10 @@
 <p><b>Longitude: </b><%= @request.longitude %></p>
 <p><b>Latitude: </b><%= @request.latitude %></p>
 
-<% @requests.each do |request| %>
-  <% if request.user.id != current_user.id %>
-    <p><b>Can you help me? Please message me.</b></p>
-    <p><b>Email: </b><%= @request.user.email %></p>
-    <p><%= request.user.first_name %> <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: request.user.id), method: 'post'%>
-  <% else %>
-    <%= link_to 'Edit', edit_request_path(request) %>
-  <% end %>
-<% end %>
-
 <p>
 <%= link_to 'Back', requests_path %>
+</p>
+
+<p>
+  
 </p>

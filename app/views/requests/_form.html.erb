@@ -18,7 +18,7 @@
   </div>
 
   <%= form.label :description %>
-  <%= form.text_area :description %>
+  <%= form.text_area :description, rows:8, placeholder: "Please enter a short description, max. 300 characters" %>
 
   <div class="form-check">
     <%= form.radio_button :category, 'one time help', :checked => true %>
@@ -39,6 +39,7 @@
 
   <div class="form-group">
     <%= form.label :status %>
+    <p>Choose the status of your request. Every user can have only one unfulfilled request at a time.</p>
     <%= form.select :status, ["Unfulfilled", "Fulfilled"] %>
   </div>
 

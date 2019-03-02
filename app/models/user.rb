@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   mount_uploader :government_approvedID, GovernmentApprovedIdUploader
+
   validates_presence_of :government_approvedID
   validates_integrity_of :government_approvedID
   validates_processing_of :government_approvedID
@@ -11,4 +12,6 @@ class User < ApplicationRecord
   before_save { self.email = email.downcase }
 
   has_many :request
+  has_many :conversations
+  
 end

@@ -12,8 +12,6 @@ class RequestsController < ApplicationController
   # GET /requests/1.json
   def show
     @requests = Request.all
-    @users = User.all
-    @conversations = Conversation.all
   end
 
   # GET /requests/new
