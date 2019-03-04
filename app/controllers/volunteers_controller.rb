@@ -1,5 +1,8 @@
 class VolunteersController < ApplicationController
   before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :get_user
+  before_action :get_request
 
   # GET /volunteers
   # GET /volunteers.json
@@ -10,6 +13,7 @@ class VolunteersController < ApplicationController
   # GET /volunteers/1
   # GET /volunteers/1.json
   def show
+    @volunteers = Volunteer.find(params[:id])
   end
 
   # GET /volunteers/new
@@ -25,6 +29,7 @@ class VolunteersController < ApplicationController
   # POST /volunteers.json
   def create
     @volunteer = Volunteer.new(volunteer_params)
+    @volunteer.user = current_user
 
     respond_to do |format|
       if @volunteer.save
@@ -69,6 +74,14 @@ class VolunteersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def volunteer_params
-      params.fetch(:volunteer, {})
+      params.fetch(:volunteer, {}.permit(:user_id, :request_id, :done))
+    end
+
+    def get_user
+      @user = User.find(params[:id])
+    end
+
+    def get_request
+      @request = Request.find(params[:id])
     end
 end

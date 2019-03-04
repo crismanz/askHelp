@@ -2,12 +2,14 @@ class ConversationsController < ApplicationController
  before_action :authenticate_user!
 
 def index
- @users = User.all
- @conversations = Conversation.all
+ @conversations = Conversation.where("sender_id = ? OR recipient_id =?", current_user.id, current_user.id)
  @requests = Request.all
+ @users = User.all - [current_user]
  end
 
 def create
+  sender_id = current_user.id
+
  if Conversation.between(params[:sender_id],params[:recipient_id])
    .present?
     @conversation = Conversation.between(params[:sender_id],
@@ -21,6 +23,10 @@ end
 private
 
  def conversation_params
-  params.permit(:sender_id, :recipient_id)
+  params.permit(:sender_id, :recipient_id, :request_id)
+ end
+
+ def unread_message_count(current_user)
+   self.messages.where("user_id != ? AND read = ?", current_user.id, false).count
  end
 end

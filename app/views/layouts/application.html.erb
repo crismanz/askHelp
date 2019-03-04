@@ -57,7 +57,7 @@
     </div>
   </nav>
 
-  <p><%= @requests.all.count %> unfulfilled requests</p>
+  <%= render 'layouts/counter' %>
 
   <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
