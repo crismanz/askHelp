@@ -21,7 +21,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-light">
+  <!-- <nav class="navbar navbar-expand-lg bg-light">
     <a class="navbar-brand" href="/">askHelp</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,12 @@
         <li class="nav-item">
           <a class="nav-link" href="/site/contact">Contact</a>
         </li>
-      </ul>
+      </ul> -->
+
+
+      <%= react_component "Navigation" %>
+
+
       <p class="navbar-text">
         <% if user_signed_in? %> Logged in as <strong><%= current_user.email %></strong>.
         <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
@@ -54,8 +59,8 @@
         <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
         <% end %>
       </p>
-    </div>
-  </nav>
+    <!-- </div>
+  </nav> -->
 
   <%= render 'layouts/counter' %>
 
