@@ -6,43 +6,18 @@ class RequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get requests_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_request_url
+    get "/requests"
     assert_response :success
   end
 
   test "should create request" do
-    assert_difference('Request.count') do
-      post requests_url, params: { request: {  } }
-    end
-
-    assert_redirected_to request_url(Request.last)
-  end
-
-  test "should show request" do
-    get request_url(@request)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_request_url(@request)
-    assert_response :success
+      post requests_url, params: { request: { title: 'title', description: 'description', longitude: '9.376307', latitude: '45.495934' } }
+    assert_response 200
   end
 
   test "should update request" do
-    patch request_url(@request), params: { request: {  } }
-    assert_redirected_to request_url(@request)
+      patch request_url(@request), params: { request: { title: 'title', description: 'description', category: 'one time help', longitude: '9.376307', latitude: '45.495934', status: 'Unfulfilled' } }
+    assert_response 200
   end
 
-  test "should destroy request" do
-    assert_difference('Request.count', -1) do
-      delete request_url(@request)
-    end
-
-    assert_redirected_to requests_url
-  end
 end

@@ -2,12 +2,12 @@ class Request < ApplicationRecord
   belongs_to :user
   has_many :conversations
 
-  # validates :user_id, uniqueness: true, if: :status_unfulfilled?
-  #
-  # def status_unfulfilled?
-  #   status == "Unfulfilled"
-  #   errors.add(:user_id, "has already an unfulfilled request")
-  # end
+  validates :user_id, uniqueness: true, if: :status_unfulfilled?
+
+  def status_unfulfilled?
+    status == "Unfulfilled"
+    errors.add(:user_id, "has already an unfulfilled request")
+  end
 
   validates_presence_of :title, :description, :longitude, :latitude, :status
   validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }

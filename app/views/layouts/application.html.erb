@@ -24,46 +24,18 @@
 </head>
 
 <body>
-  <!-- <nav class="navbar navbar-expand-lg bg-light">
-    <a class="navbar-brand" href="/">askHelp</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/site/about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/requests">Requests</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/requests/new">Add a new request</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/conversations">Conversations</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/site/contact">Contact</a>
-        </li>
-      </ul> -->
+  <%= react_component "Navigation" %>
 
 
-      <%= react_component "Navigation" %>
-
-
-      <p class="navbar-text">
-        <% if user_signed_in? %> Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-        <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-        <% end %>
-      </p>
-    <!-- </div>
-  </nav> -->
+  <p class="navbar-text">
+    <% if user_signed_in? %> Logged in as <strong><%= current_user.email %></strong>.
+    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    <% else %>
+    <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+    <% end %>
+  </p>
 
   <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
@@ -77,32 +49,36 @@
   <!-- Footer Section -->
 
   <footer>
-       <div class="container">
-            <div class="row">
+    <div class="container">
+      <div class="row">
 
-                 <div class="col-md-5 col-md-offset-1 col-sm-6">
-                      <h3>Requests in numbers</h3>
-                      <p><%= render 'layouts/counter' %></p>
-                 </div>
+        <div class="col-md-5 col-md-offset-1 col-sm-6">
+          <h3>Requests in numbers</h3>
+          <p><%= render 'layouts/counter' %></p>
+          <div class="footer-copyright">
+            <p>Copyright &copy; 2019 Your Company</p>
+          </div>
+        </div>
 
-                 <div class="col-md-4 col-md-offset-1 col-sm-6">
-                      <h3>Talk to us</h3>
-                      <p><i class="fa fa-globe"></i> 512 Delicious Street, San Francisco, CA 10880</p>
-                      <p><i class="fa fa-phone"></i> 010-020-0990</p>
-                      <p><i class="fa fa-save"></i> info@company.com</p>
-                 </div>
+        <div class="col-md-4 col-md-offset-1 col-sm-6">
+          <h3>Talk to us</h3>
+          <p><i class="fa fa-globe"></i> 512 Delicious Street, San Francisco, CA 10880</p>
+          <p><i class="fa fa-phone"></i> 010-020-0990</p>
+          <p><i class="fa fa-save"></i> info@company.com</p>
+        </div>
 
-            </div>
-       </div>
+      </div>
+    </div>
   </footer>
 
 
   <!-- Back top -->
-<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+  <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 
-<!-- SCRIPTS -->
+  <!-- SCRIPTS -->
 
-<script src="js/jquery.parallax.js"></script>
+  <script src="js/jquery.parallax.js"></script>
+  <script src="js/custom.js"></script>
 
 </body>
 </html>

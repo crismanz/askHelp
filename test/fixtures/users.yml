@@ -5,9 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  # first_name: userfirstname1
+  # last_name: userlastname1
   email: test1@test.com
-# column: value
-#
+  # government_approvedID: post.pdf
+
 two:
+  # first_name: userfirstname2
+  # last_name: userlastname2
   email: test2@test.com
-# column: value
+  # government_approvedID: post.pdf

@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
   root to: 'site#home'
-  get 'site/about'
-  get 'site/contact'
 
   resources :conversations, only: [:index, :create] do
   	resources :messages, only: [:index, :create]
