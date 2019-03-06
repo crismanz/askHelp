@@ -26,8 +26,7 @@
 <body>
   <%= react_component "Navigation" %>
 
-
-  <p class="navbar-text">
+  <div class="navbar-text">
     <% if user_signed_in? %> Logged in as <strong><%= current_user.email %></strong>.
     <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
     <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
@@ -35,7 +34,7 @@
     <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
     <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
-  </p>
+  </div>
 
   <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
@@ -71,14 +70,8 @@
     </div>
   </footer>
 
-
   <!-- Back top -->
   <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-
-  <!-- SCRIPTS -->
-
-  <script src="js/jquery.parallax.js"></script>
-  <script src="js/custom.js"></script>
 
 </body>
 </html>

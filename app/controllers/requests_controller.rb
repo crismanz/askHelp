@@ -3,6 +3,10 @@ class RequestsController < ApplicationController
   respond_to? :json
   before_action :authenticate_user!
 
+  def request_map
+    format.json { render :json => @requests.to_json(:only => [:id, :title, :description, :longitude, :latitude, :category, :done], :methods => [:to_param]) }
+  end
+
   # GET /requests
   # GET /requests.json
   def index

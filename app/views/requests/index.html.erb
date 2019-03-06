@@ -3,11 +3,26 @@
 <style media="screen">
   . table {
     padding: 10px;
-  }
+}
 </style>
 
+<div class="container">
+<div class="row">
+  <div class="col-sm">
+
+  </div>
+  <div class="col-sm" >
+
+  <%= render ('requests/map') %>
+
+
+  </div>
+</div>
+</div>
+
+
 <div id="requests">
-  <h1>Requests</h1>
+  <h2>Requests</h2>
 
   <table>
     <thead>
@@ -22,7 +37,7 @@
     <tbody>
       <% @requests.each do |request| %>
       <tr>
-        <td><h3><%= request.title %></h3></td>
+        <td><h4><%= request.title %></h4></td>
         <td><%= request.category %></td>
         <td><%= request.status %></td>
         <td><%= request.description %></td>
@@ -38,7 +53,6 @@
   </table>
 
   <br>
-
-  <%= link_to 'New Request', new_request_path %>
+  <a href="/requests/new" class="smoothScroll btn btn-default">New Request</a>
 
 </div>
