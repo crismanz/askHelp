@@ -1,3 +1,4 @@
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js">
 </script>
 <div id="test"></div>
@@ -7,7 +8,7 @@
   $(document).ready(
   function() {
     setInterval(function() {
-      $('.counter').load('/Site/reload_counter');
+      $('.counter').load('/site/counter');
     }, 3000);
   });
 
@@ -16,7 +17,8 @@
 
 <h6>Open: </h6>
 <h4><%= Request.where("request_conversation < 5").count do |count| %>
-  <% end %></h4>
-  <h6>Completed: </h6>
-  <h4><%= Request.where("request_conversation >= 5").count do |count| %>
-    <% end %></h4>
+<% end %></h4>
+
+<h6>Completed: </h6>
+<h4><%= Request.where("request_conversation >= 5").count do |count| %>
+<% end %></h4>
