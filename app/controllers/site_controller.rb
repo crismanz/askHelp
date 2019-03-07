@@ -5,4 +5,8 @@ class SiteController < ApplicationController
   def map
   end
 
+  def reload_counter
+    render :partial => "layouts/counter"
+  end
+
 end

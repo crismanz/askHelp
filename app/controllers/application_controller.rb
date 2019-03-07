@@ -22,8 +22,4 @@ class ApplicationController < ActionController::Base
     request.referrer
   end
 
-  def reload_counter
-    render :partial => "layouts/counter"
-  end
-
 end

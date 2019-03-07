@@ -1,0 +1,22 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js">
+</script>
+<div id="test"></div>
+
+<script>
+
+  $(document).ready(
+  function() {
+    setInterval(function() {
+      $('.counter').load('/Site/reload_counter');
+    }, 3000);
+  });
+
+</script>
+
+
+<h6>Open: </h6>
+<h4><%= Request.where("request_conversation < 5").count do |count| %>
+  <% end %></h4>
+  <h6>Completed: </h6>
+  <h4><%= Request.where("request_conversation >= 5").count do |count| %>
+    <% end %></h4>

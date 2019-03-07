@@ -1,9 +1,0 @@
-
-
-
-    <h6>Open: </h6>
-    <h4><%= Request.where("request_conversation < 5").count do |count| %>
-      <% end %></h4>
-  <h6>Completed: </h6>
-    <h4><%= Request.where("request_conversation >= 5").count do |count| %>
-      <% end %></h4>

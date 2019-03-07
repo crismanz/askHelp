@@ -17,10 +17,3 @@
 //= require react_ujs
 //= require components
 //= require_tree .
-
-$(document).ready(
-  function() {
-   setInterval(function() {
-     $('.counter').load('/ApplicationController/reload_counter');
- }, 3000);
-});
