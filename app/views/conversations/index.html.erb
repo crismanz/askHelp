@@ -1,4 +1,4 @@
-<div id="conversations" class="ui segment">
+<div id="messages" class="ui segment">
   <h3>Inbox</h3>
 
   <div class="ui list">
@@ -12,13 +12,25 @@
           <% recipient = User.find(conversation.sender_id) %>
         <% end %>
 
-        <div>
-          <%= link_to conversation.sender.first_name, conversation_messages_path(conversation) %>
-        </div>
+          <table class="table.messages">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="far fa-envelope"></i></td>
+                <td><div class="hover"><%= link_to conversation.sender.first_name, conversation_messages_path(conversation) %></div></td>
+                <td><% if !conversation.unread_message_count(current_user).zero? %>
+                  ( <%= conversation.unread_message_count(current_user) %> unread message/s)
+                  <% end %></td>
+              </tr>
+            </tbody>
+          </table>
 
-          <% if !conversation.unread_message_count(current_user).zero? %>
-          (<%= conversation.unread_message_count(current_user) %>)
-          <% end %>
        <% end %>
 
     </div>

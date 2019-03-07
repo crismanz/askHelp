@@ -1,91 +1,64 @@
-<p id="notice"><%= notice %></p>
-
-
-<div id="requests">
+<section id="request">
 
   <% if current_user == @request.user %>
 
-  <% if @request.conversations_count > 5 && @request.updated_at > DateTime.now - (1.0) %>
-  <h4>You didn't got help, now you can resubmit your request!</h4>
-  <%= link_to 'Resubmit', edit_request_path(@request), class: "btn btn-warining" %>
+    <% if @request.conversations_count >= 5 && @request.updated_at > DateTime.now - (1.0) %>
+    <h4>You still didn't got help, now you can resubmit your request!</h4>
+    <%= link_to 'Resubmit', edit_request_path(@request), class: "btn btn-warining" %>
+    <% end %>
 
-  <% end %>
+    <h3>Messages</h3>
 
-  <h3>Messages</h3>
+    <% @request.conversations.each do |conversation| %>
+    <% if conversation.sender_id == current_user.id ? conversation.recipient_id :  conversation.sender_id %>
+    <% recipient = User.find(conversation.sender_id) %>
+    <% else %>
+    <% recipient = User.find(conversation.receiver_id) %>
+    <% end %>
+    <%= link_to conversation.sender.first_name, conversation_messages_path(conversation)%>
+    <% end %>
+    <% elsif @request.volunteered_by?(current_user) %>
+    <p>You have already sent a message</p>
+    <% else %>
+    <h3>To assist you must submit a message</h3>
+    <%= simple_form_for @request, url: volunteer_request_path do |f| %>
+    <%= link_to "Send Message", conversations_path(request_id: @request.id, sender_id: current_user.id, recipient_id:   @request.user_id), method: :post %>
+    <% end %>
+    <% end %>
 
-  <% @request.conversations.each do |conversation| %>
-  <% if conversation.sender_id == current_user.id ? conversation.recipient_id :  conversation.sender_id %>
-  <% recipient = User.find(conversation.sender_id) %>
+  <div>
+    <p>
+      <strong> Title:</strong>
+      <%= @request.title %>
+    </p>
+    <p>
+      <strong> Description:</strong>
+      <%= @request.description %>
+    </p>
+    <p>
+      <strong> Type:</strong>
+      <%= @request.category %>
+    </p>
+    <p>
+      <strong> Location:</strong>
+      <%= @request.latitude %>
+      <%= @request.longitude %>
+    </p>
+    <p>
+      <strong>How many offert to help: </strong>
+      <%= @request.conversations_count %>
+    </p>
+    <p>
+      <strong>Request created by:</strong>
+      <%= @request.user.first_name %>
+    </p>
+  </div>
 
-  <% else %>
-
-  <% recipient = User.find(conversation.receiver_id) %>
-
-  <% end %>
-
-  <%= link_to conversation.sender.first_name, conversation_messages_path(conversation)%>
-
-  <% end %>
-
-  <% elsif @request.volunteered_by?(current_user) %>
-
-  <p>You have already sent a message</p>
-
-  <% else %>
-
-  <h3>To assist you must submit a message</h3>
-
-  <%= simple_form_for @request, url: volunteer_request_path do |f| %>
-  <%= link_to "Send Message", conversations_path(request_id: @request.id, sender_id: current_user.id, recipient_id: @request.user_id), method: :post %>
-  <% end %>
-
-  <% end %>
-
-</div>
-
-<div>
-  <p>
-    <strong> Title:</strong>
-    <%= @request.title %>
-  </p>
-  <p>
-    <strong> Description:</strong>
-    <%= @request.description %>
-  </p>
-  <p>
-    <strong> Type:</strong>
-    <%= @request.category %>
-  </p>
-  <p>
-    <strong> Location:</strong>
-    <%= @request.latitude %>
-    <%= @request.longitude %>
-  </p>
-  <p>
-    <strong>How many are helping: </strong>
-    <%= @request.conversations_count %>
-  </p>
-  <p>
-    <strong>Request created by:</strong>
-    <%= @request.user.first_name %>
-  </p>
-
-</div>
-
-<div class="col-sm-2">
-
-  <% if current_user == @request.user %>
-
-  <%= link_to 'Edit', edit_request_path(@request) %>
-
-  <br/>
-
-  <%= link_to 'Destroy', request_path(@request), :confirm => "Are you sure?", :method => :delete %>
-
-  <% end %>
-
-  <br />
-
-  <%= link_to 'Back', requests_path %>
-
-</div>
+  <div class="col-sm-2">
+    <% if current_user == @request.user %>
+      <div class="hover"><%= link_to 'Edit', edit_request_path(@request) %></div>
+      <div class="hover"><%= link_to 'Destroy', request_path(@request), :confirm => "Are you sure?", :method => :delete %></div>
+    <% end %>
+    <div class="hover"><%= link_to 'Back', requests_path %></div>
+  </div>
+</section>

@@ -1,9 +1,7 @@
-<div id="requests">
+<section id="request">
 
 <h2>New Request</h2>
-
 <%= render 'form', request: @request %>
+<div class="hover"><%= link_to 'Back', requests_path %></div>
 
-<%= link_to 'Back', requests_path %>
-
-</div>
+</section>

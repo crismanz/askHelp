@@ -4,10 +4,10 @@
 
 
 /*---------------------------------------
-    Reqeusts section
+    Requests section
 -----------------------------------------*/
 
-#requests .btn {
+#request .btn {
   background: #bfba55;
   border: 2px solid #ffffff;
   border-radius: 100px;
@@ -22,8 +22,54 @@
   transition: all 0.4s ease-in-out;
 }
 
-#reqeusts .btn:hover {
+#request .btn:hover {
   background: transparent;
-  border-color: #ffffff;
-  color: #ffffff;
+  border-color: #bfba55;
+  color: #bfba55;
+}
+
+#request {
+  padding-top: 60px;
+  padding-bottom: 80px;
+  padding-left: 80px;
+}
+
+.main-request {
+  height: 65vh;
+}
+
+/*--------------------------------------
+   Request table
+--------------------------------------*/
+
+.table-request {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 4px;
+}
+
+
+/*--------------------------------------
+   Google maps
+--------------------------------------*/
+
+.map-responsive{
+    margin-left: 40px;
+    margin-right: 40px;
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+#map {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
 }

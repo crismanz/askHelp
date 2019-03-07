@@ -1,58 +1,51 @@
-<p id="notice"><%= notice %></p>
-
 <style media="screen">
   . table {
     padding: 10px;
-}
+  }
 </style>
-
-<div class="container">
-<div class="row">
-  <div class="col-sm">
-
+<body>
+  <div class="map-responsive">
+    <%= render ('requests/map') %>
   </div>
-  <div class="col-sm" >
 
-  <%= render ('requests/map') %>
+  <section id="request">
+    <div class="main-request">
+      <h2>Requests</h2>
 
+      <table class="table-request">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
 
-  </div>
-</div>
-</div>
+        <tbody>
+          <% @requests.each do |request| %>
+          <tr>
+            <td><h4><%= request.title %></h4></td>
+            <td><%= request.category %></td>
+            <td><%= request.description %></td>
+            <td><%= request.status %></td>
 
+            <td><div class="hover"><%= link_to 'Show', request %></div></td>
+            <% if request.user == current_user %>
+            <td><div class="hover"><%= link_to 'Edit', edit_request_path(request) %></div></td>
+            <td><div class="hover"><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></div></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<div id="requests">
-  <h2>Requests</h2>
+      <br>
+      <a href="/requests/new" class="smoothScroll btn btn-default">New Request</a>
 
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Type</th>
-        <th></th>
-        <th>Description</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @requests.each do |request| %>
-      <tr>
-        <td><h4><%= request.title %></h4></td>
-        <td><%= request.category %></td>
-        <td><%= request.status %></td>
-        <td><%= request.description %></td>
-
-        <td><%= link_to 'Show', request %></td>
-        <% if request.user == current_user %>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-  <a href="/requests/new" class="smoothScroll btn btn-default">New Request</a>
-
-</div>
+    </div>
+  </section>
+</body>

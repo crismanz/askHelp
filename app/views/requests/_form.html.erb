@@ -1,11 +1,13 @@
+<section id="request">
+
 <%= form_with(model: request, local: true) do |form| %>
 <% if request.errors.any? %>
-<div id="requests">
+
   <div class="container">
     <div class="row">
       <div>
         <h3><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h3>
-
+        
         <ul>
           <% request.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -55,4 +57,4 @@
 
     </div>
   </div>
-</div>
+</section>

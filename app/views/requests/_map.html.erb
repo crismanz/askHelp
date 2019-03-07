@@ -5,22 +5,6 @@
 
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-  <style>
-
-    #map {
-      height: 600px;
-      width: 800px ;
-      border-radius: 5px;
-      border: 2px solid grey;
-    }
-
-    html, body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
 
   <div id="map"></div>
 
@@ -51,7 +35,7 @@
 
         $.getJSON("/requests.json", function ( data )  {
           $.each(data, function(key, data) {
-            var latLng = (data.conversations_count > 5) ? "null" : new google.maps.LatLng( data.latitude , data.longitude );
+            var latLng = (data.conversations_count >= 5) ? "null" : new google.maps.LatLng( data.latitude , data.longitude );
             var marker = new google.maps.Marker({
               position: latLng,
               map: map,
@@ -84,15 +68,15 @@
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       infoWindow.setPosition(pos);
       infoWindow.setContent(browserHasGeolocation ?
-      'Error: The Geolocation service failed. Please allow the browser the access to your location.' :
+      'Error: The Geolocation service failed. Please check if your browser has access to your location.' :
       'Error: Your browser doesn\'t support geolocation.');
       infoWindow.open(map);
     }
 
   </script>
 
-<script async defer
+  <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=key&callback=initMap">
-</script>
+  </script>
 
 </html>
