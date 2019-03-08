@@ -17,3 +17,11 @@
 //= require react_ujs
 //= require components
 //= require_tree .
+
+
+$(document).ready(
+function() {
+  setInterval(function() {
+    $('.counter').load('/site/counter');
+  }, 3000);
+});
