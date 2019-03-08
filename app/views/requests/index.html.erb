@@ -1,18 +1,17 @@
-<style media="screen">
-  . table {
-    padding: 10px;
-  }
-</style>
 <body>
   <div class="map-responsive">
     <%= render ('requests/map') %>
   </div>
 
-  <section id="request">
-    <div class="main-request">
+
+    <div id="request">
+      <p>In the map you can see all UNFULFILLED requests.</p>
+      <p>In this table here you can see ALL the requests (fulfilled and unfulfilled).</p>
+
       <h2>Requests</h2>
 
-      <table class="table table-sm">
+      <div style="overflow-x:auto;">
+      <table class="request-table table table-sm">
         <thead>
           <tr>
             <th>Title</th>
@@ -42,10 +41,9 @@
           <% end %>
         </tbody>
       </table>
+      </div>
 
       <br>
-      <a href="/requests/new" class="smoothScroll btn btn-default">New Request</a>
-
-    </div>
-  </section>
+      <a href="/requests/new" class="btn">New Request</a>
+</div>
 </body>

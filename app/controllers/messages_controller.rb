@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
   def index
     @requests = Request.all
     @messages = @conversation.messages
+    @user = User.all
 
     @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
 
