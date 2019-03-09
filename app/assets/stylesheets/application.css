@@ -76,7 +76,6 @@
   		background: #ffffff;
       font-family: 'Lora', serif;
       font-style: normal;
-  		font-weight: 300;
       overflow-x: hidden;
   }
 
@@ -133,9 +132,9 @@
       General
   -----------------------------------------*/
 
-  html{
+  /* html{
     -webkit-font-smoothing: antialiased;
-  }
+  } */
 
   a {
     color: #4d638c;
@@ -149,7 +148,7 @@
     outline: none;
   }
 
-  * {
+  /* * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -160,7 +159,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-  }
+  } */
 
   #about,
   #user, #messages {
@@ -246,6 +245,86 @@
   }
 
   /*---------------------------------------
+      Requests section
+  -----------------------------------------*/
+
+   .btn {
+    background: #bfba55;
+    border: 2px solid #ffffff;
+    border-radius: 100px;
+    color: #ffffff;
+    font-family: 'Merriweather', serif;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    margin-top: 10px;
+    margin-bottom: 22px;
+    transition: all 0.4s ease-in-out;
+  }
+
+   .btn:hover {
+    background: transparent;
+    border-color: #bfba55;
+    color: #bfba55;
+  }
+
+  .main-request {
+    padding-top: 60px;
+    padding-bottom: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  #request {
+    padding-top: 60px;
+    padding-bottom: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .back {
+    padding-top: 22px;
+  }
+
+  /*--------------------------------------
+     Request table
+  --------------------------------------*/
+
+  .request-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 4px;
+  }
+
+  /*--------------------------------------
+     Google maps
+  --------------------------------------*/
+
+  .map-responsive {
+      margin-left: 40px;
+      margin-right: 40px;
+      overflow:hidden;
+      padding-bottom:56.25%;
+      position:relative;
+      height:0;
+  }
+
+  #map {
+      left:0;
+      top:0;
+      height:100%;
+      width:100%;
+      position:absolute;
+  }
+
+  /*---------------------------------------
      Footer section
   -----------------------------------------*/
   footer {
@@ -253,11 +332,6 @@
       color: #ffffff;
       padding: 50px 0px;
       position: relative;
-  }
-
-  footer .col-md-4 .fa {
-    color: #ffffff;
-    padding-right: 8px;
   }
 
   footer hr {
@@ -270,40 +344,11 @@
     padding-top: 12px;
   }
 
-  /* Back top */
-  .go-top {
-    background-color: #ffffff;
-    box-shadow: 1px 1.732px 12px 0px rgba( 0, 0, 0, .14 ), 1px 1.732px 3px 0px rgba( 0, 0, 0, .12 );
-    transition : all 1s ease;
-    bottom: 2em;
-    right: 2em;
-    color: #333;
-    font-size: 24px;
-    display: none;
-    position: fixed;
-    text-decoration: none;
-    width: 40px;
-    height: 40px;
-    line-height: 38px;
-    text-align: center;
-    border-radius: 100%;
-  }
-
-  .go-top:hover {
-      background: #bfba55;
-      color: #ffffff;
-  }
-
   /*---------------------------------------
      Mobile Responsive
   -----------------------------------------*/
 
   @media (max-width: 980px) {
-
-    .main-about,
-    .main-request {
-      height: 35vh;
-    }
 
     .map-responsive {
       margin-left: 40px;

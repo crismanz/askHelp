@@ -9,23 +9,23 @@
     <div class="field">
       <%= f.label :first_name %><br />
       <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", :required => true %>
-    </div>
+    </div><hr>
 
     <div class="field">
       <%= f.label :last_name %><br />
       <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", :required => true %>
-    </div>
+    </div><hr>
 
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true %>
-    </div>
+    </div><hr>
 
     <div class="field">
       <%= f.label :government_approvedID, 'Government-approved ID (approved formats: .jpg, .png, .pdf)' %><br />
       <%= f.file_field :government_approvedID, autofocus: true, :required => true %>
       <%= f.hidden_field :government_approvedID_cache %>
-    </div>
+    </div><hr>
 
     <div class="field">
       <%= f.label :password %>
