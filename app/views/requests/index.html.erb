@@ -4,44 +4,37 @@
   </div>
 
 
-    <div id="request">
-      <p>In the map you can see all UNFULFILLED requests.</p>
-      <p>In this table here you can see ALL the requests (fulfilled and unfulfilled).</p>
+  <div id="request">
+    <h2>Requests you created</h2>
 
-      <h2>Requests</h2>
-
-      <div style="overflow-x:auto;">
+    <div style="overflow-x:auto;">
       <table class="request-table table table-sm">
         <thead>
           <tr>
             <th>Title</th>
-            <th>Type</th>
-            <th>Description</th>
             <th></th>
             <th></th>
             <th></th>
           </tr>
         </thead>
-
         <tbody>
-          <% @requests.each do |request| %>
           <tr>
-            <td><h4><%= request.title %></h4></td>
-            <td><%= request.category %></td>
-            <td><%= request.description %></td>
-
-            <td><div class="hover"><%= link_to 'Show', request %></div></td>
+            <% @requests.each do |request| %>
             <% if request.user == current_user %>
+            <td><h4><%= request.title %></h4></td>
+            <td><div class="hover"><%= link_to 'Show', request %></div></td>
             <td><div class="hover"><%= link_to 'Edit', edit_request_path(request) %></div></td>
             <td><div class="hover"><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></div></td>
             <% end %>
           </tr>
           <% end %>
+
         </tbody>
       </table>
-      </div>
+    </div>
 
-      <br>
-      <a href="/requests/new" class="btn">New Request</a>
-</div>
+    <br>
+    <a href="/requests/new" class="btn">New Request</a>
+  </div>
+
 </body>

@@ -2,10 +2,11 @@
 
   <% if current_user == @request.user %>
 
-  <% if @request.conversations_count >= 5 && @request.updated_at > DateTime.now - (1000) %>
+  <% if @request.conversations_count >= 5 && @request.updated_at > DateTime.now - (1.0) %>
   <h4>You still didn't got help, now you can resubmit your request!</h4>
-  <%= link_to 'Resubmit', edit_request_path(@request), class: "btn btn-warining" %>
+  <%= link_to 'Republish', edit_request_path(@request), method: :get, data: { confirm: 'Are you sure?' }%>
   <% end %>
+
 
   <div class="container">
     <div class="row">

@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_request, only: [:show, :edit, :update, :destroy, :republish]
   respond_to? :json
   before_action :authenticate_user!
 
@@ -19,12 +19,12 @@ class RequestsController < ApplicationController
   end
 
   def request_creator
-      @requests = Request.all
+    @requests = Request.all
 
-      respond_to do |format|
-          format.html
-          format.json { render json: @requests }
-      end
+    respond_to do |format|
+      format.html
+      format.json { render json: @requests }
+    end
   end
 
   def request_counter
@@ -45,12 +45,13 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+    @request = Request.find(params[:id])
   end
 
   # POST /requests
   # POST /requests.json
   def create
-     @request = current_user.request.build(request_params)
+    @request = current_user.request.build(request_params)
 
     respond_to do |format|
       if @request.save
@@ -85,19 +86,31 @@ class RequestsController < ApplicationController
   # DELETE /requests/1.json
   def destroy
     if current_user = @request.user
-    @request.destroy
-    respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
-      format.json { head :no_content }
+      @request.destroy
+      respond_to do |format|
+        format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
-end
+
 
   def republish
     @request = Request.find(params[:id])
-         @request.updated_at = Time.now
-         @request.save
-      redirect_to @request, notice: 'Request was updated.'
+
+    @request.updated_at = Time.now
+    @request.save
+    redirect_to @request, notice: 'Request was updated.'
+    #      if @request.update(conversations_count_params)
+
+    #      respond_to do |format|
+    #         format.html { redirect_to @request, notice: 'Request was resubmitted.' }
+    #         format.json { render :show, status: :ok, Request: @request }
+    #       else
+    #         format.html { render :edit }
+    #         format.json { render json: @request.errors, status: :unprocessable_entity }
+    #      end
+    #    end
   end
 
   def volunteer
@@ -113,15 +126,11 @@ end
   end
 
   def request_params
-    params.fetch(:request, {}).permit(:title, :description, :category, :longitude, :latitude, :status)
+    params.fetch(:request, {}).permit(:title, :description, :category, :longitude, :latitude, :conversations_count)
   end
 
   def conversations_count_params
     params.require(:request).permit(:conversations_count)
   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    # def request_params
-    #   params.fetch(:request, {}).permit(:title, :description, :category, :longitude, :latitude, :status, :done)
-    # end
-  end
+end
