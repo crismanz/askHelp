@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_request, only: [:show, :edit, :update, :destroy, :republish]
   respond_to? :json
-  before_action :authenticate_user!
 
   def request_map
     format.json { render :json => @requests.to_json(:only => [:id, :title, :description, :longitude, :latitude, :category, :done], :methods => [:to_param]) }
@@ -40,12 +40,12 @@ class RequestsController < ApplicationController
 
   # GET /requests/new
   def new
-    @request = Request.new
+    @request = current_user.request.build
   end
 
   # GET /requests/1/edit
   def edit
-    @request = Request.find(params[:id])
+
   end
 
   # POST /requests
@@ -67,12 +67,10 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
-    @request = Request.find(params[:id])
-
     respond_to do |format|
-      if @request.update(conversations_count_params)
-        @request.conversations_count = 0
-        @request.save
+      if @request.update(request_params)
+        # @request.update(params[:conversations_count] = 0)
+        # @request.save
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
         format.json { render :show, status: :ok, Request: @request }
       else
@@ -94,30 +92,23 @@ class RequestsController < ApplicationController
     end
   end
 
-
-  def republish
-    @request = Request.find(params[:id])
-
-    @request.updated_at = Time.now
-    @request.save
-    redirect_to @request, notice: 'Request was updated.'
-    #      if @request.update(conversations_count_params)
-
-    #      respond_to do |format|
-    #         format.html { redirect_to @request, notice: 'Request was resubmitted.' }
-    #         format.json { render :show, status: :ok, Request: @request }
-    #       else
-    #         format.html { render :edit }
-    #         format.json { render json: @request.errors, status: :unprocessable_entity }
-    #      end
-    #    end
-  end
-
-  def volunteer
-    @request = Request.find(params[:id])
-    @conversation = Conversation.create!(request_id: @request.id,sender_id: current_user.id,recipient_id: @request.user_id)
-    redirect_to @request
-  end
+  # def republish
+  #   @request = Request.find(params[:id])
+  #
+  #   @request.updated_at = Time.now
+  #   @request.save
+  #   redirect_to @request, notice: 'Request was updated.'
+  #   #      if @request.update(conversations_count_params)
+  #
+  #   #      respond_to do |format|
+  #   #         format.html { redirect_to @request, notice: 'Request was resubmitted.' }
+  #   #         format.json { render :show, status: :ok, Request: @request }
+  #   #       else
+  #   #         format.html { render :edit }
+  #   #         format.json { render json: @request.errors, status: :unprocessable_entity }
+  #   #      end
+  #   #    end
+  # end
 
   private
 
@@ -129,8 +120,8 @@ class RequestsController < ApplicationController
     params.fetch(:request, {}).permit(:title, :description, :category, :longitude, :latitude, :conversations_count)
   end
 
-  def conversations_count_params
-    params.require(:request).permit(:conversations_count)
-  end
+  # def conversations_count_params
+  #   params.require(:request).permit(:conversations_count)
+  # end
 
 end

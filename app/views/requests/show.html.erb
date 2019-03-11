@@ -4,7 +4,7 @@
 
   <% if @request.conversations_count >= 5 && @request.updated_at > DateTime.now - (1.0) %>
   <h4>You still didn't got help, now you can resubmit your request!</h4>
-  <%= link_to 'Republish', edit_request_path(@request), method: :get, data: { confirm: 'Are you sure?' }%>
+  <%= link_to 'Republish', edit_request_path(@request) %>
   <% end %>
 
 
@@ -15,21 +15,19 @@
       </div>
       <div class="col-lg-9">
         <% @request.conversations.each do |conversation| %>
-        <% if conversation.sender_id == current_user.id ? conversation.recipient_id :  conversation.sender_id %>
-        <% recipient = User.find(conversation.sender_id) %><br/>
+        <% if conversation.sender_id == current_user.id %>
+          <% recipient = User.find(conversation.receiver_id) %>
         <% else %>
-        <% recipient = User.find(conversation.receiver_id) %>
-        <% end %>
+          <% recipient = User.find(conversation.sender_id) %><br/>
+          <% end %>
         <%= link_to conversation.sender.first_name, conversation_messages_path(conversation)%>
         <% end %>
-        <% elsif @request.volunteered_by?(current_user) %>
+    <% elsif @request.volunteered_by?(current_user) %>
         <h3>Status: </h3><p>You have already sent a message</p>
-        <% else %>
+    <% else %>
         <h3>Status: </h3><p>To assist you must submit a message</p>
-        <%= simple_form_for @request, url: volunteer_request_path do |f| %>
         <%= link_to "Send Message", conversations_path(request_id: @request.id, sender_id: current_user.id, recipient_id:   @request.user_id), method: :post, class: "btn" %>
-        <% end %>
-        <% end %>
+    <% end %>
       </div>
     </div>
   </div>

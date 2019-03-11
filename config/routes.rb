@@ -5,18 +5,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   root to: 'site#home'
 
+  resources :requests
+
   resources :conversations, only: [:index, :create] do
   	resources :messages, only: [:index, :create]
   end
-  # 
-  # resources :requests do
-  #   member do
-  #     patch 'volunteer'
-  #     patch 'republish'
-  #   end
-  # end
-
-  resources :requests
 
   get 'site/counter'
 

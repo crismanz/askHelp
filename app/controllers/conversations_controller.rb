@@ -10,10 +10,10 @@ def index
 def create
   sender_id = current_user.id
 
- if Conversation.between(params[:sender_id],params[:recipient_id])
+ if Conversation.between(params[:sender_id],params[:request_id])
    .present?
     @conversation = Conversation.between(params[:sender_id],
-     params[:recipient_id]).first
+     params[:request_id]).first
  else
   @conversation = Conversation.create!(conversation_params)
  end

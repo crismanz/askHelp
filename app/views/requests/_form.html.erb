@@ -45,9 +45,11 @@
 
     <div class="form-group">
       <%= form.label :status %>
-      <p>Status is by default "Unfulfilled". Every user can have only one unfulfilled request at a time.</p>
+      <p>Status is by default "Unfulfilled".</p>
       <%= form.select :status, ["Unfulfilled", "Fulfilled"] %>
     </div>
+
+    <%= form.hidden_field :conversations_count, value: 0 %>
 
     <%= form.submit class: "btn" %>
   </form>
